@@ -31,7 +31,7 @@ pipeline {
     
  	environment {
 		GITHUB_CREDENTIAL_ID = '0555ce8aa4c346c4234f4f88a69c62c389150e60'
-		GITHUB_REPO_URL = 'https://0555ce8aa4c346c4234f4f88a69c62c389150e60@github.com/FatFace/b-order-mgmt-app.git'		
+		GITHUB_REPO_URL = 'https://0555ce8aa4c346c4234f4f88a69c62c389150e60@github.com/FatFace/common-framwork-handler.git'		
  		MULE_CLOUDHUB_URI = 'https://anypoint.mulesoft.com'
  		MULE_CLOUDHUB_USER = 'jenkins@fatface.com'
  		MULE_CLOUDHUB_PASSWORD = 'jenkins123'
