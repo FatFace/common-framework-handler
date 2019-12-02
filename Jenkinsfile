@@ -30,8 +30,8 @@ pipeline {
     }
     
  	environment {
-		GITHUB_CREDENTIAL_ID = '0555ce8aa4c346c4234f4f88a69c62c389150e60'
-		GITHUB_REPO_URL = 'https://0555ce8aa4c346c4234f4f88a69c62c389150e60@github.com/FatFace/common-framwork-handler.git'		
+		GITHUB_CREDENTIAL_ID = '478628f213a9bf0de88455d38617b8686a2a7b2e'
+		GITHUB_REPO_URL = 'https://478628f213a9bf0de88455d38617b8686a2a7b2e@github.com/FatFace/common-framwork-handler.git'		
  		MULE_CLOUDHUB_URI = 'https://anypoint.mulesoft.com'
  		MULE_CLOUDHUB_USER = 'jenkins@fatface.com'
  		MULE_CLOUDHUB_PASSWORD = 'jenkins123'
