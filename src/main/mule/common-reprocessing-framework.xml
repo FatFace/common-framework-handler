@@ -56,4 +56,8 @@ attributes.transactionId.stringValue]]></ee:set-variable>
 		<flow-ref doc:name="Audit Process Exit" doc:id="dba9fea7-d66b-4e95-bdbb-6a1758189112" name="audit-process-exit-sub-flow"/>
 		<flow-ref doc:name="Log Process Exit" doc:id="0000a57c-cf9a-47aa-935d-1f5eb4efbe70" name="log-process-exit-sub-flow" />
 	</flow>
+	<flow name="raise-error-flow" doc:id="e7d828f9-5c7f-4a33-a9d6-9a048ce07a06" >
+		<raise-error doc:name="Raise error - REPROCESS:LEVEL_2_RETRY" doc:id="90ff27e6-9fc7-4db6-995f-33a24fab83b9" type="REPROCESS:LEVEL_2_RETRY" description="Level 2 Retry Mechanism Processing"/>
+		<raise-error doc:name="Raise error - FF_CLOUDHUB:HELPDESK_ALERT" doc:id="5b4c6943-93c1-4812-88cf-5386f58bfe89" type="FF_CLOUDHUB:HELPDESK_ALERT" description="Sending Alert to Help Desk" />
+	</flow>
 </mule>

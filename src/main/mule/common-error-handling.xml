@@ -976,16 +976,59 @@ p('error.msg.compress.notDecompress')]]></ee:set-variable>
 			</ee:transform>
       		<flow-ref doc:name="Global Prepare Error Response Sub Flow" doc:id="9431dfd7-ae20-4b45-a51c-302dd6776bb4" name="global-prepare-error-response-sub-flow"/>
 		</on-error-continue>
+		<on-error-continue type="REPROCESS:LEVEL_2_RETRY" enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="e92e008e-77bd-4fd1-97b1-4b5bf9c621e5" >
+			
+      		<ee:transform doc:name="Error Variables" doc:id="fc3e59eb-b0ba-42b8-ad7d-ba559d8ac947" >
+				<ee:message >
+				</ee:message>
+				<ee:variables >
+					<ee:set-variable variableName="httpStatus" ><![CDATA[%dw 2.0
+output application/java
+---
+500]]></ee:set-variable>
+					<ee:set-variable variableName="errorCode" ><![CDATA[%dw 2.0
+output application/java
+---
+500]]></ee:set-variable>
+					<ee:set-variable variableName="errorMessage" ><![CDATA[%dw 2.0
+output application/java
+---
+p('error.msg.reprocessing.level2retry')]]></ee:set-variable>
+				</ee:variables>
+			</ee:transform>
+			<flow-ref doc:name="Common Queue Processing Sub Flow" doc:id="05ceb881-6d80-4187-94f4-4ea074b2fe27" name="common-queue-processing-sub-flow" />
+      		<flow-ref doc:name="Global Prepare Error Response Sub Flow" doc:id="ffa82c37-7f22-430b-ae06-70c4c5f2fea6" name="global-prepare-error-response-sub-flow"/>
+		</on-error-continue>
+		<!-- If none of the above matches then handle the exception using generic handler -->
+		 <on-error-continue type="FF_CLOUDHUB:HELPDESK_ALERT" enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="6570345c-12c4-46ed-a4bd-53a2f415b40d" >
+			
+      		<ee:transform doc:name="Error Variables" doc:id="9df45352-3f53-4bef-a61a-5340fa0cef57" >
+				<ee:message >
+				</ee:message>
+				<ee:variables >
+					<ee:set-variable variableName="httpStatus" ><![CDATA[%dw 2.0
+output application/java
+---
+500]]></ee:set-variable>
+					<ee:set-variable variableName="errorCode" ><![CDATA[%dw 2.0
+output application/java
+---
+500]]></ee:set-variable>
+					<ee:set-variable variableName="errorMessage" ><![CDATA[%dw 2.0
+output application/java
+---
+p('error.msg.cloudhub.alert')]]></ee:set-variable>
+				</ee:variables>
+			</ee:transform>
+      		<flow-ref doc:name="Global Prepare Error Response Sub Flow" doc:id="3022de88-bc64-4eb2-9d6a-45b41937b7bc" name="global-prepare-error-response-sub-flow"/>
+		</on-error-continue>
 		<!-- If none of the above matches then handle a the exception using generic handler -->
-		<on-error-continue type="ANY" enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="40180633-7687-4269-9ac4-b63bbe1ca580">
-			<set-variable value="#[500]" doc:name="Set the HTTP Status - 500" doc:id="0aa8adfb-5692-42e1-9bdd-a6712598d3ac" variableName="httpStatus" />
-		
-			<flow-ref doc:name="SMTP Flow Reference" doc:id="0abd7e0a-5326-4fff-9bcd-655c62dad9e1" name="common-smtp-sub-flow"/>
-			<flow-ref doc:name="Common Queue Processing Sub Flow" doc:id="3444ae0c-4ed9-47ca-9a99-ddc9b3b3039e" name="common-queue-processing-sub-flow" />
-			<flow-ref doc:name="Global Prepare Error Response Sub Flow" doc:id="ef951fe8-521e-4c3a-b907-a77d766679b5" name="global-prepare-error-response-sub-flow"/>
+		<on-error-continue type="ANY" enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="7f8f613c-a88d-4d8c-9985-6f53b385c6e3">
+			<set-variable value="#[500]" doc:name="Set the HTTP Status - 500" doc:id="57b6ec34-4f39-4855-b808-657bd93aca11" variableName="httpStatus" />
+			<flow-ref doc:name="Global Prepare Error Response Sub Flow" doc:id="2eaf7e11-769e-4195-9e61-d9661fa892f8" name="global-prepare-error-response-sub-flow"/>
 		</on-error-continue>
 	</error-handler>
-    
+   
     <sub-flow name="common-queue-processing-sub-flow" doc:id="cae6ac7c-3007-4bac-980f-3fd9aa1357b0" >
 		<flow-ref doc:name="Log Process Entry" doc:id="b53c352e-1d2f-4bf8-81fb-6ce2f9512932" name="log-process-entry-sub-flow"/>
 		<ee:transform doc:name="Create Queue Message Transformation" doc:id="51e9287c-0394-4f72-9789-3701bc6199fa" >
