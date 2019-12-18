@@ -7,9 +7,6 @@ is:
   logging:
     toggle: "OFF"
 
-domain: "common-template-api"
-environment:
-  id: "Development"  
 flow:
   name:
     undefined: "Flow Name not Defined"

@@ -1,13 +1,3 @@
-http:
-  basePath: "/api/*"
-  port: "8081"
-  api:
-    p-template-api:
-      basePath: "/"
-      host: ""
-      port: ""
-      path: ""  
-      
 #----Common Block---No change Needed----      
 cloudhub:
   username: "![XImJcfQv4D6cYan0i6XwPZi8Uxv0OkDQvTITnsw/onM=]"
@@ -46,11 +36,3 @@ sqs:
     url: 
       reprocessingQueue: "https://sqs.eu-west-1.amazonaws.com/691628577374/msg-reprocessing-q"
       targetQueueUrl: "https://sqs.eu-west-1.amazonaws.com/691628577374/inventory-q"
-
-        
-    
-  
-  
-    
-        
-    

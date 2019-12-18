@@ -1030,6 +1030,7 @@ p('error.msg.cloudhub.alert')]]></ee:set-variable>
 	</error-handler>
    
     <sub-flow name="common-queue-processing-sub-flow" doc:id="cae6ac7c-3007-4bac-980f-3fd9aa1357b0" >
+		<set-variable value="common-queue-processing-sub-flow" doc:name="Flow Name" doc:id="a98a1d89-7448-4d3d-b779-3fbedd47b6fc" variableName="flowName" />
 		<flow-ref doc:name="Log Process Entry" doc:id="b53c352e-1d2f-4bf8-81fb-6ce2f9512932" name="log-process-entry-sub-flow"/>
 		<ee:transform doc:name="Create Queue Message Transformation" doc:id="51e9287c-0394-4f72-9789-3701bc6199fa" >
 			<ee:message >
