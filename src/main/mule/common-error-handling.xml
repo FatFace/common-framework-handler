@@ -1038,7 +1038,7 @@ p('error.msg.cloudhub.alert')]]></ee:set-variable>
 				<ee:set-payload resource="dwl/create-queue-msg.dwl" />
 			</ee:message>
 		</ee:transform>
-		<sqs:send-message doc:name="Send message" doc:id="8ed49de8-9f6f-49a4-89eb-9347a168e355" config-ref="Amazon_SQS_Configuration" queueUrl="${sqs.queue.url.reprocessingQueue}">
+		<sqs:send-message doc:name="Send message" doc:id="8ed49de8-9f6f-49a4-89eb-9347a168e355" config-ref="FF_Amazon_SQS_Configuration" queueUrl="${sqs.queue.url.reprocessingQueue}">
 			<reconnect frequency="${retry.frequency}" count="${retry.attempts}" />
 		</sqs:send-message>
 		<flow-ref doc:name="Audit Exit Flow" doc:id="ea2cb9ea-eab7-4eae-9728-0464fb782b1a" name="audit-process-exit-sub-flow"/>
@@ -1048,7 +1048,7 @@ p('error.msg.cloudhub.alert')]]></ee:set-variable>
 		<set-variable value="#['common-smtp-sub-flow']" doc:name="Flow Name" doc:id="05039e1e-c39a-4d30-bb97-c173fdedf2e0" variableName="flowName"/>
 		<flow-ref doc:name="Log Process Entry" doc:id="c574759b-8d7a-42f5-b8ec-89cd7ec79138" name="log-process-entry-sub-flow" />
 		<flow-ref doc:name="Audit Entry Flow" doc:id="cafbd0cd-884d-4cf5-8e3e-487c37bc1fb0" name="audit-process-entry-sub-flow"/>
-		<email:send doc:name="Send Mail" doc:id="23e29bdd-a348-4506-ba08-1beb9bff94c0" config-ref="Email_SMTP" fromAddress="no-reply@fatface.net" subject="${smtp.subject}">
+		<email:send doc:name="Send Mail" doc:id="23e29bdd-a348-4506-ba08-1beb9bff94c0" config-ref="FF_Email_SMTP" fromAddress="no-reply@fatface.net" subject="${smtp.subject}">
 			<email:to-addresses >
 				<email:to-address value="kishan.soni@whishworks.com" />
 			</email:to-addresses>
@@ -1089,7 +1089,7 @@ output application/json
 		</ee:transform>
 		<flow-ref doc:name="Log Error" doc:id="9dd62ffe-b77e-40ac-acbf-1ada687d955f" name="log-error-sub-flow" />
 		<flow-ref doc:name="Audit Error" doc:id="a925d335-5826-401c-8734-fa914caf2f98" name="audit-error-sub-flow" />
-		<cloudhub:create-notification doc:name="Create Notification" doc:id="f72d2ba7-c8b3-4155-a0b1-d9e83f0653ed" config-ref="CloudHub_Config" domain="${domain}" priority="ERROR" transactionId="#[vars.transactionId]">
+		<cloudhub:create-notification doc:name="Create Notification" doc:id="f72d2ba7-c8b3-4155-a0b1-d9e83f0653ed" config-ref="FF_CloudHub_Config" domain="${domain}" priority="ERROR" transactionId="#[vars.transactionId]">
 		</cloudhub:create-notification>
 		<set-variable value="Cloudhub alert sent" doc:name="Logging Payload" doc:id="a7d0e333-81b0-4716-a62f-d70e114fd0ea" variableName="loggingPayload"/>
 		<flow-ref doc:name="Log Payload" doc:id="668998a2-eaae-4a5c-a999-5dc6dd00dfe5" name="logging-sub-flow"/>
