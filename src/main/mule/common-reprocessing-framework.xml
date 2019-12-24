@@ -8,7 +8,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 http://www.mulesoft.org/schema/mule/sqs http://www.mulesoft.org/schema/mule/sqs/current/mule-sqs.xsd
 http://www.mulesoft.org/schema/mule/common-logging-extension http://www.mulesoft.org/schema/mule/common-logging-extension/current/mule-common-logging-extension.xsd">
 	<flow name="queue-reprocessing-flow" doc:id="5be034fe-254d-4f7a-836e-f335ceef9a21" >
-		<sqs:receivemessages doc:name="Receive messages from reprocessing Queue" doc:id="2eabe98d-292d-4bb3-8a55-40ef56ac0308" config-ref="FF_Amazon_SQS_Configuration" queueUrl="${sqs.queue.url.reprocessingQueue}">
+		<sqs:receivemessages doc:name="Receive messages from reprocessing Queue" doc:id="2eabe98d-292d-4bb3-8a55-40ef56ac0308" config-ref="Amazon_SQS_Configuration" queueUrl="${sqs.queue.url.reprocessingQueue}">
 			<reconnect frequency="${retry.frequency}" count="${retry.attempts}" />
 		</sqs:receivemessages>
 		<set-variable value="queue-reprocessing-flow" doc:name="Flow Name" doc:id="7460c81f-8a8c-4cb7-8d4f-50c2373a2d0a" variableName="flowName"/>
@@ -42,10 +42,10 @@ attributes.transactionId.stringValue]]></ee:set-variable>
 						<ee:set-payload resource="dwl/create-target-queue-msg.dwl" />
 					</ee:message>
 				</ee:transform>
-				<sqs:send-message doc:name="Send Message To Target Queue" doc:id="cb2114c8-3daf-4295-8ae7-d08e255a008c" config-ref="FF_Amazon_SQS_Configuration" queueUrl="#[attributes.targetQueueUrl.stringValue]" >
+				<sqs:send-message doc:name="Send Message To Target Queue" doc:id="cb2114c8-3daf-4295-8ae7-d08e255a008c" config-ref="Amazon_SQS_Configuration" queueUrl="#[attributes.targetQueueUrl.stringValue]" >
 					<reconnect frequency="${retry.frequency}" count="${retry.attempts}" />
 				</sqs:send-message>
-				<sqs:delete-message doc:name="Delete message" doc:id="661721ce-7105-435a-b2a3-fd5051f61bae" config-ref="FF_Amazon_SQS_Configuration" receiptHandle="#[vars.messageReceipt]" queueUrl="${sqs.queue.url.reprocessingQueue}"/>
+				<sqs:delete-message doc:name="Delete message" doc:id="661721ce-7105-435a-b2a3-fd5051f61bae" config-ref="Amazon_SQS_Configuration" receiptHandle="#[vars.messageReceipt]" queueUrl="${sqs.queue.url.reprocessingQueue}"/>
 			</when>
 			<otherwise>
 				<set-variable value="No Target Queues defined for this message" doc:name="Set Logging Payload" doc:id="2b286829-e5c9-4cb8-9d28-9830c1f72cdf" variableName="loggingPayload"/>

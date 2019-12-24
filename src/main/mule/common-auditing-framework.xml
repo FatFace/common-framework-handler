@@ -13,7 +13,7 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
 		<choice doc:name="Choice" doc:id="7efc7152-ebee-4229-a31c-c9aa6b05a486" >
 			<when expression="#[p('is.audit.toggle') == 'ON']">
 				<async doc:name="Async" doc:id="a542103c-7f73-4ec8-bd76-5bc39d3939c2">
-					<db:insert doc:name="Insert For Entry" doc:id="1c3e1322-9a36-46f9-a706-a973d57a6022" config-ref="FF_Database_Config">
+					<db:insert doc:name="Insert For Entry" doc:id="1c3e1322-9a36-46f9-a706-a973d57a6022" config-ref="Database_Config">
 						<db:sql >INSERT INTO [dbo].[t_audit] ([request_id] ,[message_id] ,[correlation_id] ,[log_type] ,[instance_thread] ,[log_message] ,[record_create_time] ,[message_receive_time] ,[flow_status],[pri_biz_key],[sec_biz_key])
 VALUES (:requestId , :finalMessageId, :corrlationId ,'CALL ENTRY', :thread , :logMessage ,GETDATE() , :transactionStartTime ,1, :primaryKey, :secondaryKey);</db:sql>
 						<db:input-parameters ><![CDATA[#[{
@@ -41,7 +41,7 @@ VALUES (:requestId , :finalMessageId, :corrlationId ,'CALL ENTRY', :thread , :lo
 		<choice doc:name="Choice" doc:id="9303816f-1613-4d73-8150-1ed0c9a716ff" >
 			<when expression="#[p('is.audit.toggle') == 'ON']">
 				<async doc:name="Async" doc:id="1ceff0e5-2c25-4ad5-8a53-12da036c50ac">
-			<db:insert doc:name="Insert For Exit" doc:id="d98643bf-7281-4bf0-915d-0377f90a683a" config-ref="FF_Database_Config">
+			<db:insert doc:name="Insert For Exit" doc:id="d98643bf-7281-4bf0-915d-0377f90a683a" config-ref="Database_Config">
 						<db:sql >INSERT INTO [dbo].[t_audit] ([request_id] ,[message_id] ,[correlation_id] ,[log_type] ,[instance_thread] ,[log_message] ,[record_create_time] ,[message_receive_time] ,[flow_status],[pri_biz_key],[sec_biz_key])
 VALUES (:requestId , :finalMessageId, :corrlationId ,'CALL EXIT' , :thread , :logMessage ,GETDATE() , :transactionStartTime ,4, :primaryKey, :secondaryKey);</db:sql>
 						<db:input-parameters ><![CDATA[#[{
@@ -68,7 +68,7 @@ VALUES (:requestId , :finalMessageId, :corrlationId ,'CALL EXIT' , :thread , :lo
 		<choice doc:name="Choice" doc:id="69161d4d-859d-4d9a-90f9-a2219a15980f" >
 			<when expression="#[p('is.audit.toggle') == 'ON']">
 				<async doc:name="Async" doc:id="b28b9029-7d26-48d6-97d0-1b652398fab8">
-			<db:insert doc:name="Insert For Process Entry" doc:id="9c70c9b9-e173-4748-9087-29d4309acaad" config-ref="FF_Database_Config">
+			<db:insert doc:name="Insert For Process Entry" doc:id="9c70c9b9-e173-4748-9087-29d4309acaad" config-ref="Database_Config">
 						<db:sql >INSERT INTO [dbo].[t_audit] ([request_id] ,[message_id] ,[correlation_id] ,[log_type] ,[instance_thread] ,[log_message] ,[record_create_time] ,[message_receive_time] ,[flow_status],[pri_biz_key],[sec_biz_key])
 VALUES (:requestId , :finalMessageId, :corrlationId ,'PROCESS ENTRY' , :thread , :logMessage ,GETDATE() , :transactionStartTime ,2, :primaryKey, :secondaryKey);</db:sql>
 						<db:input-parameters ><![CDATA[#[{
@@ -95,7 +95,7 @@ VALUES (:requestId , :finalMessageId, :corrlationId ,'PROCESS ENTRY' , :thread ,
 		<choice doc:name="Choice" doc:id="7cb84d94-2048-4403-bc3d-f62f3ce3c935" >
 			<when expression="#[p('is.audit.toggle') == 'ON']">
 				<async doc:name="Async" doc:id="a3e38c48-4a16-4cc0-b250-e7ea1288b7fd">
-			<db:insert doc:name="Insert For Process Exit" doc:id="bafbec8f-e4d4-4da3-8c92-6ecce0fc96ee" config-ref="FF_Database_Config">
+			<db:insert doc:name="Insert For Process Exit" doc:id="bafbec8f-e4d4-4da3-8c92-6ecce0fc96ee" config-ref="Database_Config">
 						<db:sql >INSERT INTO [dbo].[t_audit] ([request_id] ,[message_id] ,[correlation_id] ,[log_type] ,[instance_thread] ,[log_message] ,[record_create_time] ,[message_receive_time] ,[flow_status],[pri_biz_key],[sec_biz_key])
 VALUES (:requestId , :finalMessageId, :corrlationId ,'PROCESS EXIT' , :thread , :logMessage ,GETDATE() , :transactionStartTime ,5, :primaryKey, :secondaryKey);</db:sql>
 						<db:input-parameters ><![CDATA[#[{
@@ -163,7 +163,7 @@ output application/java
 		<batch:job jobName="common-auditing-framework-batch-job" doc:id="2e123053-b5d2-47e4-aa9e-afd45a8e2ff9" maxFailedRecords="-1" schedulingStrategy="ROUND_ROBIN">
 			<batch:process-records >
 				<batch:step name="Batch_Step" doc:id="fc54dd77-fa4f-4065-9302-92638013bb99" >
-					<db:insert doc:name="Insert For Audit Details" doc:id="bb015d75-9f0a-492b-aefa-3acebad9f828" config-ref="FF_Database_Config">
+					<db:insert doc:name="Insert For Audit Details" doc:id="bb015d75-9f0a-492b-aefa-3acebad9f828" config-ref="Database_Config">
 							<db:sql>INSERT INTO [dbo].[t_audit_details] ([audit_id] ,[correlation_id] ,[log_message] ,[record_create_time] ,[message_receive_time] ,[pri_biz_key],[sec_biz_key])
 	VALUES (:auditId, :corrlationId, :logMessage , GETDATE(), :transactionStartTime , :primaryKey, :secondaryKey);</db:sql>
 							<db:input-parameters><![CDATA[#[{
@@ -188,7 +188,7 @@ output application/java
 		<choice doc:name="Choice" doc:id="7414f2da-257e-47b2-932a-41f6447aff9b" >
 			<when expression="#[p('is.audit.toggle') == 'ON']">
 				<async doc:name="Async" doc:id="e348bcba-1173-4136-aa32-802d4b26f3d0" >
-					<db:insert doc:name="Insert For Success" doc:id="7090bbe4-8b71-4231-8b96-cc04c653ae58" config-ref="FF_Database_Config">
+					<db:insert doc:name="Insert For Success" doc:id="7090bbe4-8b71-4231-8b96-cc04c653ae58" config-ref="Database_Config">
 						<db:sql >INSERT INTO [dbo].[t_audit] ([request_id] ,[message_id] ,[correlation_id] ,[log_type] ,[instance_thread] ,[log_message] ,[record_create_time] ,[message_receive_time] ,[flow_status],[pri_biz_key],[sec_biz_key])
 VALUES (:requestId , :finalMessageId, :corrlationId ,'SUCCESS' , :thread , :logMessage ,GETDATE() , :transactionStartTime ,0, :primaryKey, :secondaryKey);</db:sql>
 						<db:input-parameters ><![CDATA[#[{
@@ -215,7 +215,7 @@ VALUES (:requestId , :finalMessageId, :corrlationId ,'SUCCESS' , :thread , :logM
 		<choice doc:name="Choice" doc:id="4684385c-c5c9-4bab-b84f-db9ca8262bc2" >
 			<when expression="#[p('is.audit.toggle') == 'ON']">
 				<async doc:name="Async" doc:id="0753c505-4bf8-413e-8870-3ca0fce2b196">
-			<db:insert doc:name="Insert For Warning" doc:id="499df2f4-1e6d-479b-86da-7fe4df4523af" config-ref="FF_Database_Config">
+			<db:insert doc:name="Insert For Warning" doc:id="499df2f4-1e6d-479b-86da-7fe4df4523af" config-ref="Database_Config">
 						<db:sql >INSERT INTO [dbo].[t_audit] ([request_id] ,[message_id] ,[correlation_id] ,[log_type] ,[instance_thread] ,[log_message] ,[record_create_time] ,[message_receive_time] ,[flow_status],[pri_biz_key],[sec_biz_key])
 VALUES (:requestId , :finalMessageId, :corrlationId ,'WARN' , :thread , :logMessage ,GETDATE() , :transactionStartTime ,00, :primaryKey, :secondaryKey);</db:sql>
 						<db:input-parameters ><![CDATA[#[{
@@ -242,7 +242,7 @@ VALUES (:requestId , :finalMessageId, :corrlationId ,'WARN' , :thread , :logMess
 		<choice doc:name="Choice" doc:id="0cecc56b-99ee-45a0-bd0d-6bfb55e9de33" >
 			<when expression="#[p('is.audit.toggle') == 'ON']">
 				<async doc:name="Async" doc:id="47ba336f-77aa-43f6-945b-377b2681f8af">
-					<db:insert doc:name="Insert For Error" doc:id="0a2a9479-1092-4d56-a59f-ab5342d5b25d" config-ref="FF_Database_Config">
+					<db:insert doc:name="Insert For Error" doc:id="0a2a9479-1092-4d56-a59f-ab5342d5b25d" config-ref="Database_Config">
 						<db:sql >INSERT INTO [dbo].[t_audit] ([request_id] ,[message_id] ,[correlation_id] ,[log_type] ,[instance_thread] ,[log_message] ,[record_create_time] ,[message_receive_time] ,[flow_status],[pri_biz_key],[sec_biz_key])
 VALUES (:requestId , :finalMessageId, :corrlationId ,'ERROR' , :thread , :logMessage ,GETDATE() , :transactionStartTime ,-1, :primaryKey, :secondaryKey);</db:sql>
 						<db:input-parameters ><![CDATA[#[{
