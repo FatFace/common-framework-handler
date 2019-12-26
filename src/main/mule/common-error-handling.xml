@@ -1082,7 +1082,7 @@ output application/json
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
 ---
-'Exception Occurred with Error Code: ' ++ payload.error.errorCode ++ ', Error Message: ' ++ payload.error.errorMessage ++ if( vars.finalMessageId != null ) (',  Message ID: ' ++ vars.finalMessageId) else '' ++ if( vars.requestId != null ) (', Request ID: ' ++ vars.requestId) else '' ++  if( vars.additionalInfo != null )  (', Additional Info: ' ++ vars.additionalInfo) else '' ]]></ee:set-payload>
+'Exception Occurred with Error Code: ' ++ payload.error.errorCode ++ ', Error Message: ' ++ payload.error.errorMessage ++ if( vars.finalMessageId != null ) (',  Message ID: ' ++ vars.finalMessageId) else '' ++ if( vars.transactionId != null ) (', Request ID: ' ++ vars.transactionId) else '' ++  if( vars.additionalInfo != null )  (', Additional Info: ' ++ vars.additionalInfo) else '' ]]></ee:set-payload>
 			</ee:message>
 			<ee:variables >
 			</ee:variables>
