@@ -30,9 +30,9 @@ if (attributes.headers.'transaction-start-time' != null) attributes.headers.'tra
 				<ee:set-variable variableName="additionalInfo" ><![CDATA[%dw 2.0
 output application/java
 ---
-'Transaction Start Time: ' ++  vars.transactionStartTime ++ if(attributes.method != null) ('; HTTP Method: ' ++ attributes.method ) else '' ++ if(attributes.requestUri != null) (
-'; Resource Path: ' ++ attributes.requestUri) else '' ++ if(attributes.headers.'x-http-method-override' != null) '; HTTP-Method-Override: ' ++ 
-attributes.headers.'x-http-method-override' else  '' ++ (if(vars.primaryKey != null) ('; Primary Key: ' ++ vars.primaryKey) else '') 
+'Transaction Start Time: ' ++  vars.transactionStartTime ++ (if(attributes.method != null) ('; HTTP Method: ' ++ attributes.method ) else '') ++ (if(attributes.requestUri != null) (
+'; Resource Path: ' ++ attributes.requestUri) else '') ++ (if(attributes.headers.'x-http-method-override' != null) '; HTTP-Method-Override: ' ++ 
+attributes.headers.'x-http-method-override' else  '') ++ (if(vars.primaryKey != null) ('; Primary Key: ' ++ vars.primaryKey) else '') 
 ++ (if(vars.secondaryKey != null) ('; Secondary Key: ' ++ vars.secondaryKey) else '')]]></ee:set-variable>
 				<ee:set-variable variableName="finalMessageId" ><![CDATA[%dw 2.0
 output application/java
