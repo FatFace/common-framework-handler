@@ -81,6 +81,11 @@ var latency = ( transactionEndTime as Number {unit: "milliseconds"})
 			<common-logging-extension:process-by-logger-level doc:name="Logger" doc:id="944ea9c1-5c31-441e-9189-9c3f29a72b61" RequestID="#[vars.transactionId]" TimeStamp="#[now()]" AdditionalInfo="#['Transaction Start Time: ' ++ vars.transactionStartTime]" LogPayload="#[if (vars.loggingPayload != null) vars.loggingPayload else '']" messageCorrelationID="#[vars.messageCorrelationId]" AppName="#[app.name]" MessageID="#[vars.finalMessageId]" FlowName="#[if (vars.flowName != null) vars.flowName else p('flow.name.undefined')]"/>
 		</async>
 	</sub-flow>
+	<sub-flow name="Auditing-logging-sub-flow" doc:id="98542a7c-4d1a-4e2c-95d9-c022f7b75c4d">	
+		<async doc:name="Async" doc:id="76c3f059-a1d6-4019-ba86-61678740d393" >
+			<common-logging-extension:process-by-logger-level doc:name="Logger" doc:id="3c47e3c1-114f-429d-a6df-44e147380c9c" RequestID="#[vars.transactionId]" TimeStamp="#[now()]" AdditionalInfo="#['Transaction Start Time: ' ++ vars.transactionStartTime]" LogPayload="#[if (vars.loggingPayload != null) vars.loggingPayload else '']" messageCorrelationID="#[vars.messageCorrelationId]" AppName="#[app.name]" MessageID="#[vars.finalMessageId]" FlowName="#[if (vars.flowName != null) vars.flowName else p('flow.name.undefined')]"/>
+		</async>
+	</sub-flow>
 	<sub-flow name="log-process-exit-sub-flow" doc:id="7259d029-20dc-4cae-bff9-04348d2a334d" >
 		<async doc:name="Async" doc:id="ba812be2-e5cd-486a-9317-77bcf68d502e" >
 			<common-logging-extension:process-exit-logger doc:name="Process Exit Logger" doc:id="ebb18043-b3ed-4869-98d3-a1e00f67e830" RequestID="#[vars.transactionId]" TimeStamp="#[now()]" AdditionalInfo="#[vars.additionalInfo]" LogPayload="#[if (p('is.logging.toggle') == 'ON' and payload != null and payload != '' and payload.^['mimeType'] != '*/*') write(payload, payload.^['mimeType']) else '']" messageCorrelationID="#[vars.messageCorrelationId]" AppName="#[app.name]" MessageID="#[vars.finalMessageId]" FlowName="#[if (vars.flowName != null) vars.flowName else p('flow.name.undefined')]"/>

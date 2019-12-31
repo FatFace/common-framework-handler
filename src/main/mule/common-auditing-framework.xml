@@ -33,7 +33,7 @@ VALUES (:requestId , :finalMessageId, :corrlationId ,'CALL ENTRY', :thread , :lo
 </when>
 			<otherwise >
 				<set-variable value="Entry Audit Logging is turned OFF" doc:name="Set Logging Payload" doc:id="453418b9-946b-42e0-a427-17bc81a0da4c" variableName="loggingPayload"/>
-				<flow-ref doc:name="Logging Message" doc:id="c8825fee-477e-444e-881d-c1e78960dfed" name="logging-sub-flow"/>
+				<flow-ref doc:name="Logging Message" doc:id="c8825fee-477e-444e-881d-c1e78960dfed" name="Auditing-logging-sub-flow"/>
 			</otherwise>
 		</choice>
 	</sub-flow>
@@ -60,7 +60,7 @@ VALUES (:requestId , :finalMessageId, :corrlationId ,'CALL EXIT' , :thread , :lo
 			</when>
 			<otherwise >
 				<set-variable value="Exit Audit Logging is turned OFF" doc:name="Set Logging Payload" doc:id="7688c807-bb21-4fbf-92ea-4b920291ded6" variableName="loggingPayload"/>
-				<flow-ref doc:name="Logging Message" doc:id="b9fcdb05-7430-4925-bf79-b63c9847e6a3" name="logging-sub-flow"/>
+				<flow-ref doc:name="Logging Message" doc:id="b9fcdb05-7430-4925-bf79-b63c9847e6a3" name="Auditing-logging-sub-flow"/>
 			</otherwise>
 		</choice>
 	</sub-flow>
@@ -87,7 +87,7 @@ VALUES (:requestId , :finalMessageId, :corrlationId ,'PROCESS ENTRY' , :thread ,
 			</when>
 			<otherwise >
 				<set-variable value="Process Entry Audit Logging is turned OFF" doc:name="Set Logging Payload" doc:id="c60c469f-9a2d-4045-bb6a-fe797d19e750" variableName="loggingPayload"/>
-				<flow-ref doc:name="Logging Message" doc:id="bd8a27b2-d581-4ee6-a1f1-b1107558c4dc" name="logging-sub-flow"/>
+				<flow-ref doc:name="Logging Message" doc:id="bd8a27b2-d581-4ee6-a1f1-b1107558c4dc" name="Auditing-logging-sub-flow"/>
 			</otherwise>
 		</choice>
 	</sub-flow>
@@ -114,7 +114,7 @@ VALUES (:requestId , :finalMessageId, :corrlationId ,'PROCESS EXIT' , :thread , 
 			</when>
 			<otherwise >
 				<set-variable value="Process Exit Audit Logging is turned OFF" doc:name="Set Logging Payload" doc:id="fadf10cc-c4d8-4e7d-a8cb-c38f24f504a3" variableName="loggingPayload"/>
-				<flow-ref doc:name="Logging Message" doc:id="fe9ecd2b-a264-45d7-bd8d-ab35f1c7dcfb" name="logging-sub-flow"/>
+				<flow-ref doc:name="Logging Message" doc:id="fe9ecd2b-a264-45d7-bd8d-ab35f1c7dcfb" name="Auditing-logging-sub-flow"/>
 			</otherwise>
 		</choice>
 	</sub-flow>
@@ -149,13 +149,13 @@ output application/java
 					</when>
 					<otherwise >
 						<set-variable value="Process Entry Audit Logging is turned OFF" doc:name="Set Logging Payload" doc:id="b2079cf2-c528-43ad-9a4d-5a4887d74b18" variableName="loggingPayload"/>
-						<flow-ref doc:name="Logging Message" doc:id="4218fbb9-7b38-4c82-b6e5-dce4423a1d52" name="logging-sub-flow"/>
+						<flow-ref doc:name="Logging Message" doc:id="4218fbb9-7b38-4c82-b6e5-dce4423a1d52" name="Auditing-logging-sub-flow"/>
 					</otherwise>
 				</choice>
 			</when>
 			<otherwise >
 				<set-variable value="Process Entry Audit Logging is turned OFF" doc:name="Set Logging Payload" doc:id="e384a285-c361-4e9a-8000-1daadc903340" variableName="loggingPayload"/>
-				<flow-ref doc:name="Logging Message" doc:id="d8db73fd-edd2-4b29-8dbb-135e4c771045" name="logging-sub-flow"/>
+				<flow-ref doc:name="Logging Message" doc:id="d8db73fd-edd2-4b29-8dbb-135e4c771045" name="Auditing-logging-sub-flow"/>
 			</otherwise>
 		</choice>
 	</sub-flow>
@@ -180,7 +180,7 @@ output application/java
 			</batch:process-records>
 			<batch:on-complete >
 				<set-variable value="All audit line data are processed" doc:name="Set Logging Payload" doc:id="49add98d-37dc-4855-917a-81521cd94d00" variableName="loggingPayload"/>
-				<flow-ref doc:name="Logging Message" doc:id="188cf679-96ec-4941-b5db-2ae79c0e9105" name="logging-sub-flow"/>
+				<flow-ref doc:name="Logging Message" doc:id="188cf679-96ec-4941-b5db-2ae79c0e9105" name="Auditing-logging-sub-flow"/>
 			</batch:on-complete>
 		</batch:job>
 	</sub-flow>
@@ -207,7 +207,7 @@ VALUES (:requestId , :finalMessageId, :corrlationId ,'SUCCESS' , :thread , :logM
 			</when>
 			<otherwise >
 				<set-variable value="Success Audit Logging is turned OFF" doc:name="Set Logging Payload" doc:id="ddfb20d9-05e4-4d5c-a1b0-0a1308788f92" variableName="loggingPayload"/>
-				<flow-ref doc:name="Logging Message" doc:id="fb6f9055-45a8-4fd3-ba7a-6b979392c443" name="logging-sub-flow"/>
+				<flow-ref doc:name="Logging Message" doc:id="fb6f9055-45a8-4fd3-ba7a-6b979392c443" name="Auditing-logging-sub-flow"/>
 			</otherwise>
 		</choice>
 	</sub-flow>
@@ -234,7 +234,7 @@ VALUES (:requestId , :finalMessageId, :corrlationId ,'WARN' , :thread , :logMess
 			</when>
 			<otherwise >
 				<set-variable value="Warning Audit Logging is turned OFF" doc:name="Set Logging Payload" doc:id="8c408043-39e1-48fb-890d-e8343700a5b3" variableName="loggingPayload"/>
-				<flow-ref doc:name="Logging Message" doc:id="a7d5abf2-da03-4068-a481-63db01b00fa7" name="logging-sub-flow"/>
+				<flow-ref doc:name="Logging Message" doc:id="a7d5abf2-da03-4068-a481-63db01b00fa7" name="Auditing-logging-sub-flow"/>
 			</otherwise>
 		</choice>
 	</sub-flow>
@@ -261,7 +261,7 @@ VALUES (:requestId , :finalMessageId, :corrlationId ,'ERROR' , :thread , :logMes
 			</when>
 			<otherwise >
 				<set-variable value="Error Audit Logging is turned OFF" doc:name="Set Logging Payload" doc:id="398e7383-93c3-46ea-aad6-076979e07eea" variableName="loggingPayload"/>
-				<flow-ref doc:name="Logging Message" doc:id="e4570fd1-9ac5-424e-9bb4-16a6b2298327" name="logging-sub-flow"/>
+				<flow-ref doc:name="Logging Message" doc:id="e4570fd1-9ac5-424e-9bb4-16a6b2298327" name="Auditing-logging-sub-flow"/>
 			</otherwise>
 		</choice>
 	</sub-flow>
