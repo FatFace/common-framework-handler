@@ -19,6 +19,12 @@ var messageMT = messageQ.^['mimeType']
 		} as Object {
 			class: "org.mule.extension.sqs.api.model.MessageAttributeValue"
 		},
+		"fileName": {
+			"stringValue" : if(vars.fileName != null) vars.fileName else '',
+			"dataType" : "String.fileName"
+		} as Object {
+			class: "org.mule.extension.sqs.api.model.MessageAttributeValue"
+		},
 		"targetQueue": {
 			"stringValue" : vars.targetQueueVar,
 			"dataType" : "String.targetQueue"

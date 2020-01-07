@@ -12,8 +12,14 @@ output application/java
 			class: "org.mule.extension.sqs.api.model.MessageAttributeValue"
 		},
 		"count": {
-			"stringValue" : vars.count,
+			"stringValue" : attributes.count.stringValue,
 			"dataType" : "String.count"
+		} as Object {
+			class: "org.mule.extension.sqs.api.model.MessageAttributeValue"
+		},
+		"fileName": {
+			"stringValue" : if (attributes.fileName.stringValue != null) attributes.fileName.stringValue else '',
+			"dataType" : "String.fileName"
 		} as Object {
 			class: "org.mule.extension.sqs.api.model.MessageAttributeValue"
 		},
