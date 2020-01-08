@@ -1038,7 +1038,7 @@ p('error.msg.cloudhub.alert')]]></ee:set-variable>
 				<ee:set-payload resource="dwl/create-queue-msg.dwl" />
 			</ee:message>
 		</ee:transform>
-		<sqs:send-message doc:name="Send message" doc:id="8ed49de8-9f6f-49a4-89eb-9347a168e355" config-ref="Amazon_SQS_Configuration" queueUrl="${sqs.queue.url.reprocessingQueue}">
+		<sqs:send-message doc:name="Send message" doc:id="8ed49de8-9f6f-49a4-89eb-9347a168e355" config-ref="Amazon_SQS_Configuration" queueUrl="#[vars.targetQueueUrl]">
 			<reconnect frequency="${retry.frequency}" count="${retry.attempts}" />
 		</sqs:send-message>
 		<flow-ref doc:name="Audit Exit Flow" doc:id="ea2cb9ea-eab7-4eae-9728-0464fb782b1a" name="audit-process-exit-sub-flow"/>
@@ -1059,6 +1059,10 @@ p('error.msg.cloudhub.alert')]]></ee:set-variable>
 		<flow-ref doc:name="Audit Exit Flow" doc:id="e75d5983-876c-4fed-9aeb-ff59c38b9838" name="audit-process-exit-sub-flow"/>
 		<flow-ref doc:name="Log Process Exit" doc:id="aaf5dbc2-ff16-4314-9aa2-ff911e5ee727" name="log-process-exit-sub-flow" />
 	</sub-flow>
+	<flow name="raise-error-flow" doc:id="e94f26de-2c0a-491f-a39f-291b05d11e92" >
+		<raise-error doc:name="Raise error - REPROCESS:LEVEL_2_RETRY" doc:id="dffcc8e2-a7b9-402f-a7f2-110683b73c05" type="REPROCESS:LEVEL_2_RETRY" description="Level 2 Retry Mechanism Processing"/>
+		<raise-error doc:name="Raise error - FF_CLOUDHUB:HELPDESK_ALERT" doc:id="f4497280-d6ec-4438-a5d5-5b495f226e22" type="FF_CLOUDHUB:HELPDESK_ALERT" description="Sending Alert to Help Desk" />
+	</flow>
 	<sub-flow name="global-prepare-error-response-sub-flow" doc:id="144512c8-8979-4ad1-ad6e-4daef8496754">
 		<set-variable value="#['global-prepare-error-response-sub-flow']" doc:name="Flow Name" doc:id="bdf0d437-8a19-4f4c-b0fb-7ae2f05bbfc8" variableName="flowName"/>
 		<ee:transform doc:name="Error Response Transformation" doc:id="b3a71808-796b-4367-ab57-ae97cd08d47a" >

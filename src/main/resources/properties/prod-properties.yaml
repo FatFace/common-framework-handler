@@ -44,9 +44,3 @@ sqs:
   accessKey: ""
   secretKey: ""
   region: ""
-  queue:
-    target:
-      inventory: ""
-    url: 
-      reprocessingQueue: ""
-      targetQueueUrl: ""
