@@ -1,3 +1,4 @@
+  
 pipeline {
     agent any 
  
@@ -16,12 +17,7 @@ pipeline {
 		defaultValue: false,
 		description: 'Enable if you would like to deploy into Mule runtime.'
         )
-        
-        string(name: 'MULE_CLOUDHUB_RUNTIME', defaultValue: '4.2.1', description: 'Mule runtime')
-        string(name: 'MULE_APPLICATION_NAME', defaultValue: 'dev-order-mgmt-app', description: 'Unique name of the application [mule artifact] while deploying Anypoint platform')
-        string(name: 'MULE_ENV', defaultValue: 'dev', description: 'Enviroment setting for Mule app/api artifact')
-        string(name: 'ENCRYPTION_KEY', defaultValue: 'secure key', description: 'Encryption key needed for only to run munit run')
-	    
+        	    
         gitParameter name: 'BRANCH_TAG',
                      type: 'PT_BRANCH_TAG',
                      defaultValue: 'develop',
@@ -30,8 +26,9 @@ pipeline {
     }
     
  	environment {
-		GITHUB_CREDENTIAL_ID = 'd4a78ae8a3204d33df996b54c34237034f8073b7'
-		GITHUB_REPO_URL = 'https://${GITHUB_CREDENTIAL_ID}@github.com/FatFace/common-framework-handler.git'		
+		MULE_ENV = "dev"
+		GITHUB_CREDENTIAL_ID = credentials('Jenkins-Fatface-id')
+		GITHUB_REPO_URL = 'https://$GITHUB_CREDENTIAL_ID@github.com/FatFace/common-framework-handler.git'		
  		MULE_CLOUDHUB_URI = 'https://anypoint.mulesoft.com'
  		MULE_CLOUDHUB_USER = 'jenkins@fatface.com'
  		MULE_CLOUDHUB_PASSWORD = 'jenkins123'
@@ -75,7 +72,7 @@ pipeline {
             } 
             steps {
                 script {               
-			    		def lastCommit = sh returnStdout: true, script: 'git log -1'
+			def lastCommit = sh returnStdout: true, script: 'git log -1'
 	                if (lastCommit.contains("[maven-release-plugin]")){
 	                    echo  "Deployment skipped because it has been managed by release plugin"
 	                } else {
@@ -84,7 +81,7 @@ pipeline {
 			     	withMaven(globalMavenSettingsConfig: 'global-maven-settings-xml-id') {
 					sh   'mvn clean package -DskipMunitTests'
 				 }
-   }
+   			}
                  }
             }
         } //end:stage:build
