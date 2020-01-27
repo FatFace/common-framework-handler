@@ -26,8 +26,7 @@ pipeline {
     
  	environment {
 		MULE_ENV = "dev"
-		GITHUB_CREDENTIAL_ID = credentials('Jenkins-Fatface-id')
-		GITHUB_REPO_URL = 'https://$GITHUB_CREDENTIAL_ID@github.com/FatFace/common-framework-handler.git'		
+		GITHUB_CREDENTIAL_ID = credentials('Jenkins-Fatface-Pat')		
  		MULE_CLOUDHUB_URI = 'https://anypoint.mulesoft.com'
  		MULE_CLOUDHUB_USER = 'jenkins@fatface.com'
  		MULE_CLOUDHUB_PASSWORD = 'jenkins123'
@@ -58,7 +57,7 @@ pipeline {
           					[$class: 'LocalBranch', localBranch: "${params.BRANCH_TAG}"]],
 	                          gitTool: 'Default',
 	                          submoduleCfg: [],
-	                          userRemoteConfigs: [[url: "${GITHUB_REPO_URL}", credentialsId: "${GITHUB_CREDENTIAL_ID}"]]
+	                          userRemoteConfigs: [[url: "https://$GITHUB_CREDENTIAL_ID@github.com/FatFace/common-framework-handler.git", credentialsId: "${GITHUB_CREDENTIAL_ID}"]]
 	                        ])
 			}
 		}
