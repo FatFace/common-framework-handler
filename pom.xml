@@ -4,14 +4,14 @@
 
 	<groupId>com.fatface.mule</groupId>
 	<artifactId>common-framework-handler</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1-SNAPSHOT</version>
         <packaging>mule-application</packaging>
 	<name>common-framework-handler</name>
 	
 	<scm>
 		<connection>scm:git:https://${env.GITHUB_PAT}@github.com/FatFace/${project.artifactId}.git</connection>
 		<developerConnection>scm:git:https://${env.GITHUB_PAT}@github.com/FatFace/${project.artifactId}.git</developerConnection>
-		<tag>common-framework-handler-1.0.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
     <properties>
