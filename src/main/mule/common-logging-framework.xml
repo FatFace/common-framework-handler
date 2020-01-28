@@ -19,7 +19,7 @@ if (attributes.headers.'transaction-id' != null) attributes.headers.'transaction
 				<ee:set-variable variableName="transactionStartTime" ><![CDATA[%dw 2.0
 output application/java
 ---
-if (attributes.headers.'transaction-start-time' != null) attributes.headers.'transaction-start-time' as DateTime else if (vars.transactionStartTime != null) vars.transactionStartTime as DateTime else now()]]></ee:set-variable>
+if (attributes.headers.'transaction-start-time' != null) (attributes.headers.'transaction-start-time' as DateTime as String {format:"yyyy-MM-dd'T'hh:MM:ss.SSS'Z'"}) else if (vars.transactionStartTime != null) (vars.transactionStartTime as DateTime as String {format:"yyyy-MM-dd'T'hh:MM:ss.SSS'Z'"}) else (now() as DateTime as String {format:"yyyy-MM-dd'T'hh:MM:ss.SSS'Z'"})]]></ee:set-variable>
 			</ee:variables>
 		</ee:transform>
 		<set-variable value="#[if(vars.correlationId != null) vars.correlationId else correlationId]" doc:name="Set Message Correlation Id" doc:id="4b33abbd-2392-4bb8-9346-47ebc1315d08" variableName="messageCorrelationId"/>
@@ -30,9 +30,9 @@ if (attributes.headers.'transaction-start-time' != null) attributes.headers.'tra
 				<ee:set-variable variableName="additionalInfo" ><![CDATA[%dw 2.0
 output application/java
 ---
-'Transaction Start Time: ' ++  vars.transactionStartTime ++ if(attributes.method != null) ('; HTTP Method: ' ++ attributes.method ) else '' ++ if(attributes.requestUri != null) (
-'; Resource Path: ' ++ attributes.requestUri) else '' ++ if(attributes.headers.'x-http-method-override' != null) '; HTTP-Method-Override: ' ++ 
-attributes.headers.'x-http-method-override' else  '' ++ (if(vars.primaryKey != null) ('; Primary Key: ' ++ vars.primaryKey) else '') 
+'Transaction Start Time: ' ++  vars.transactionStartTime ++ (if(attributes.method != null) ('; HTTP Method: ' ++ attributes.method ) else '') ++ (if(attributes.requestUri != null) (
+'; Resource Path: ' ++ attributes.requestUri) else '') ++ (if(attributes.headers.'x-http-method-override' != null) '; HTTP-Method-Override: ' ++ 
+attributes.headers.'x-http-method-override' else  '') ++ (if(vars.primaryKey != null) ('; Primary Key: ' ++ vars.primaryKey) else '') 
 ++ (if(vars.secondaryKey != null) ('; Secondary Key: ' ++ vars.secondaryKey) else '')]]></ee:set-variable>
 				<ee:set-variable variableName="finalMessageId" ><![CDATA[%dw 2.0
 output application/java
@@ -59,7 +59,7 @@ vars.transactionId ]]></ee:set-variable>
 output application/java
 var transactionEndTime = now()
 var latency = ( transactionEndTime as Number {unit: "milliseconds"}) 
-			- (if (vars.transactionStartTime != null) (vars.transactionStartTime as Number {unit: "milliseconds"}) else 0) 
+			- (if (vars.transactionStartTime != null) ((vars.transactionStartTime) as DateTime as Number {unit: "milliseconds"}) else 0) 
 ---
 
 

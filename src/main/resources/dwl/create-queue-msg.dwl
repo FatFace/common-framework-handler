@@ -13,18 +13,6 @@ var messageMT = messageQ.^['mimeType']
 		} as Object {
 			class: "org.mule.extension.sqs.api.model.MessageAttributeValue"
 		},
-		"targetQueue": {
-			"stringValue" : vars.targetQueueVar,
-			"dataType" : "String.targetQueue"
-		} as Object {
-			class : "org.mule.extension.sqs.api.model.MessageAttributeValue"
-		},
-		"targetQueueUrl": {
-			"stringValue" : vars.targetQueueUrl,
-			"dataType" : "String.targetQueueUrl"
-		} as Object {
-			class : "org.mule.extension.sqs.api.model.MessageAttributeValue"
-		},
 		"transactionId": {
 			"stringValue" : vars.transactionId,
 			"dataType" : "String.transactionId"

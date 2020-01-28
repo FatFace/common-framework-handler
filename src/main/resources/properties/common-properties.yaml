@@ -7,9 +7,6 @@ is:
   logging:
     toggle: "OFF"
 
-domain: "common-template-api"
-environment:
-  id: "Development"  
 flow:
   name:
     undefined: "Flow Name not Defined"
@@ -68,6 +65,10 @@ error:
       notCompress: "Not able to compress"
       invalidFormat: "The given content does not match the format of the configured strategy"
       multipleEntry: "The archive to be decompressed has more than one entry"
-      notDecompress: "Not able to decompress" 
+      notDecompress: "Not able to decompress"
+    reprocessing:
+      level2retry: "Level 2 Retry Mechanism Processing"
+    cloudhub:
+      alert: "Sending alert to Help Desk"       
       
       

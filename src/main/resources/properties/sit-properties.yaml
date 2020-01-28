@@ -1,52 +1,32 @@
-http:
-  basePath: "/api/*"
-  port: "8081"
-  api:
-    p-template-api:
-      basePath: "/"
-      host: ""
-      port: ""
-      path: ""  
-      
 #----Common Block---No change Needed----      
 cloudhub:
-  username: "![iz7//COkIEFNtURkhXV0krWKJGtWm8QU]"
-  password: "![PkflFNbtA+Y+4XmwMZCrKw==]"
+  username: "![XImJcfQv4D6cYan0i6XwPZi8Uxv0OkDQvTITnsw/onM=]"
+  password: "![r9f7FSUCH+2adxR8OeswFg==]"
   
 smtp:
   host: "mail.fatface.net"
   port: "465"
-  user: "![iz7//COkIEFNtURkhXV0krWKJGtWm8QU]"
-  password: "![PkflFNbtA+Y+4XmwMZCrKw==]"
+  user: "![XImJcfQv4D6cYan0i6XwPZi8Uxv0OkDQvTITnsw/onM=]"
+  password: "![r9f7FSUCH+2adxR8OeswFg==]"
   subject: "Fatface API Exception"
 #----Common Block---No change Needed----
-
-autodiscovery:
-  id: ""
-  flow: "x-template-api-main"
-
+    
 db:
  audit: 
   config:
-   host: ""
-   port: ""
-   user: ""
-   password: ""
-   database: "" 
+   host: "mule-sandbox.cm1i2vsjtzdf.eu-west-1.rds.amazonaws.com"
+   port: "1433"
+   user: "![AyD0mBi0zwPqptV8KbEJGkjzeMuTdVHL2AEWiq0N3sQ=]"
+   password: "![PX91DJD02zpJ0MJ3jLRKUw==]"
+   database: "FATFACE_DB" 
 
 sftp:
-  host: ""
-  port: ""
-  username: ""
-  password: "" 
+  host: "ftp.fatface.com"
+  port: "22"
+  username: "![W49cMbSedB3HHfPcr0pWWyYHk27r5mLh++/a62Nglxg=]"
+  password: "![YoKYhq6QWsR9eW3AVcCh2TRSSvrwrp94baroSAHlBlg=]" 
   
 sqs:
-  accessKey: ""
-  secretKey: ""
-  region: ""
-  queue:
-    target:
-      inventory: ""
-    url: 
-      reprocessingQueue: ""
-      targetQueueUrl: ""
+  accessKey: "![iKDP0/LYfR1ghGUCOAayKYI5kMT/ieTr3IMibNfn9y8=]"
+  secretKey: "![z8W9r4EBG78ATEDLlzRgrDu8pSr3cf8u0RPGoG/mEyLZSeyc1prL/JqYzbF2CWUY]"
+  region: "![6lleIG6Qoif/fTA7pK+sUA==]"
