@@ -11,11 +11,6 @@ pipeline {
                 defaultValue: false,
                 description: 'Enable if you would like to publish into maven repo.'
         )
-        
-	booleanParam(name: 'IS_MULE_DEPLOYMENT_REQUIRED',
-		defaultValue: false,
-		description: 'Enable if you would like to deploy into Mule runtime.'
-        )
         	    
         gitParameter name: 'BRANCH_TAG',
                      type: 'PT_BRANCH_TAG',
