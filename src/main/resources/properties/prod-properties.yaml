@@ -1,7 +1,7 @@
 #----Common Block---No change Needed----      
 cloudhub:
   username: "![0so5SqsEunWc4U+W5DRa5eJOhljaw4Nx0qJg4yp3qnA=]"
-  password: "![828g0ukkhaCDoayPBgPZ06Oa0uDELiXntFk5OykvNdk=]"
+  password: "![avdAlF/7zHhA3/onlsWMTnMf91n0ai/MeHWp4YwZ2E8=]"
   
 smtp:
   host: "mail.fatface.net"
