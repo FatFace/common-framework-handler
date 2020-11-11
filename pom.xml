@@ -4,7 +4,7 @@
 
 	<groupId>com.fatface.mule</groupId>
 	<artifactId>common-framework-handler</artifactId>
-        <version>1.0.2-SNAPSHOT</version>
+        <version>1.0.3</version>
         <packaging>mule-application</packaging>
 	<name>common-framework-handler</name>
 	

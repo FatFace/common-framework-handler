@@ -36,6 +36,7 @@ error:
     '503': "Retry Exhausted"
     '504': "HTTP Timeout"
     '429': "Too Many Requests"
+    '412': "Precondition Failed"
     http:
       parsing: "Parsing Error"
     generic:  

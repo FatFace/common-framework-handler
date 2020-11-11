@@ -1,17 +1,7 @@
-http:
-  basePath: "/api/*"
-  port: "8081"
-  api:
-    p-template-api:
-      basePath: "/"
-      host: ""
-      port: ""
-      path: ""  
-      
 #----Common Block---No change Needed----      
 cloudhub:
-  username: "![5/w01nYmhxyvgHVC8Uh0yvTYk/WLHWBP2ZU+9DMOSnw=]"
-  password: "![ae5QSfiTACKaB08EZlg0AA==]"
+  username: "![0so5SqsEunWc4U+W5DRa5eJOhljaw4Nx0qJg4yp3qnA=]"
+  password: "![avdAlF/7zHhA3/onlsWMTnMf91n0ai/MeHWp4YwZ2E8=]"
   
 smtp:
   host: "mail.fatface.net"
@@ -20,10 +10,6 @@ smtp:
   password: "![ae5QSfiTACKaB08EZlg0AA==]"
   subject: "Fatface API Exception"
 #----Common Block---No change Needed----
-
-autodiscovery:
-  id: ""
-  flow: "x-template-api-main"
 
 db:
  audit: 
