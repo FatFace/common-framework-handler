@@ -78,7 +78,7 @@ var latency = ( transactionEndTime as Number {unit: "milliseconds"})
 	</sub-flow>
 	<sub-flow name="logging-sub-flow" doc:id="79ffeb22-8087-4515-892e-f61ccaa7547f">	
 		<async doc:name="Async" doc:id="3fb8fc73-70e0-4a45-b825-b477e246e347" >
-			<common-logging-extension:process-by-logger-level doc:name="Logger" doc:id="944ea9c1-5c31-441e-9189-9c3f29a72b61" RequestID="#[vars.transactionId]" TimeStamp="#[now()]" AdditionalInfo="#['Transaction Start Time: ' ++ vars.transactionStartTime]" LogPayload="#[if (vars.loggingPayload != null) vars.loggingPayload else '']" messageCorrelationID="#[vars.messageCorrelationId]" AppName="#[app.name]" MessageID="#[vars.finalMessageId]" FlowName="#[if (vars.flowName != null) vars.flowName else p('flow.name.undefined')]"/>
+			<common-logging-extension:process-by-logger-level doc:name="Logger" doc:id="944ea9c1-5c31-441e-9189-9c3f29a72b61" RequestID="#[vars.transactionId]" TimeStamp="#[now()]" AdditionalInfo="#['Transaction Start Time: ' ++ vars.transactionStartTime]" LogPayload="#[if (vars.loggingPayload != null) vars.loggingPayload else '']" messageCorrelationID="#[vars.messageCorrelationId]" AppName="#[app.name]" MessageID="#[vars.finalMessageId]" FlowName="#[if (vars.flowName != null) vars.flowName else p('flow.name.undefined')]" logLevel="INFO"/>
 		</async>
 	</sub-flow>
 	<sub-flow name="log-process-exit-sub-flow" doc:id="7259d029-20dc-4cae-bff9-04348d2a334d" >
